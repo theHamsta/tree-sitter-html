@@ -32,7 +32,7 @@ module.exports = grammar({
 
     _node: $ => choice(
       $.doctype,
-      seq(alias(/^---$/, '---'), $.astro_component_script, '---\n'),
+      seq('---\n', $.astro_component_script, '---\n'),
       $.text,
       $.element,
       $.script_element,
