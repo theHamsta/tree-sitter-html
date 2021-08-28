@@ -1,5 +1,5 @@
 module.exports = grammar({
-  name: 'html',
+  name: 'astro',
 
   extras: $ => [
     $.comment,
@@ -32,12 +32,15 @@ module.exports = grammar({
 
     _node: $ => choice(
       $.doctype,
+      seq(alias(/^---$/, '---'), $.astro_component_script, '---\n'),
       $.text,
       $.element,
       $.script_element,
       $.style_element,
-      $.erroneous_end_tag
+      $.erroneous_end_tag,
     ),
+
+    astro_component_script: $ => repeat1(/([^\-]|\-[^\-]|\-\-[^\-]|\-\-[^\-]|)+/),
 
     element: $ => choice(
       seq(
@@ -120,6 +123,6 @@ module.exports = grammar({
       seq('"', optional(alias(/[^"]+/, $.attribute_value)), '"')
     ),
 
-    text: $ => /[^<>\s]([^<>]*[^<>\s])?/
+    text: $ => /([^<>\-\s]|\-[^<>\s]|\-\-[^<>\s])([^<>]*[^<>\s])?/
   }
 });

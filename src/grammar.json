@@ -1,5 +1,5 @@
 {
-  "name": "html",
+  "name": "astro",
   "rules": {
     "fragment": {
       "type": "REPEAT",
@@ -46,6 +46,28 @@
           "name": "doctype"
         },
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "PATTERN",
+                "value": "^---$"
+              },
+              "named": false,
+              "value": "---"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "astro_component_script"
+            },
+            {
+              "type": "STRING",
+              "value": "---\n"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "text"
         },
@@ -66,6 +88,13 @@
           "name": "erroneous_end_tag"
         }
       ]
+    },
+    "astro_component_script": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "PATTERN",
+        "value": "([^\\-]|\\-[^\\-]|\\-\\-[^\\-]|\\-\\-[^\\-]|)+"
+      }
     },
     "element": {
       "type": "CHOICE",
@@ -434,7 +463,7 @@
     },
     "text": {
       "type": "PATTERN",
-      "value": "[^<>\\s]([^<>]*[^<>\\s])?"
+      "value": "([^<>\\-\\s]|\\-[^<>\\s]|\\-\\-[^<>\\s])([^<>]*[^<>\\s])?"
     }
   },
   "extras": [

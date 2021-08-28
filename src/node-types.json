@@ -1,5 +1,10 @@
 [
   {
+    "type": "astro_component_script",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "attribute",
     "named": true,
     "fields": {},
@@ -35,6 +40,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "astro_component_script",
+          "named": true
+        },
         {
           "type": "doctype",
           "named": true
@@ -112,6 +121,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "astro_component_script",
+          "named": true
+        },
         {
           "type": "doctype",
           "named": true
@@ -244,6 +257,10 @@
   },
   {
     "type": "'",
+    "named": false
+  },
+  {
+    "type": "---\n",
     "named": false
   },
   {
